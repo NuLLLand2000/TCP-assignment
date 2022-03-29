@@ -1,133 +1,3 @@
-<<<<<<< HEAD
-//
-// Created by Rustylake on 2022/3/25.
-//
-#include <stdio.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <string.h>
-#include <unistd.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <openssl/md5.h>
-
-
-/**
- * 创建套接字
- * @return client_fd
- */
-int create_socket() {
-    int client_fd = 0;
-    client_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (client_fd < 0) {
-        perror("socket failed");
-        return -1;
-    }
-    return client_fd;
-}
-
-char* read_file(char *file_name) {
-    FILE *file_ptr;
-    char static buff[255];
-    file_ptr = fopen(file_name, "r");
-    fscanf(file_ptr, "%s", buff);
-    fclose(file_ptr);  //关闭文件
-    return buff;
-}
-
-/**
-*  Get MD5 String
-*
-*/
-unsigned char* getMD5(char *input_string) {
-    unsigned static char c[MD5_DIGEST_LENGTH];
-    char *filename = input_string;
-    int i;
-    FILE *inFile = fopen (filename, "rb");
-    MD5_CTX mdContext;
-    int bytes;
-    unsigned char data[1024];
-
-    if (inFile == NULL) {
-        printf ("%s can't be opened.\n", filename);
-        return 0;
-    }
-
-    MD5_Init (&mdContext);
-    while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
-        MD5_Update (&mdContext, data, bytes);
-    }
-    
-    MD5_Final (c,&mdContext);
-    
-    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
-      printf("%02x", c[i]);
-    }
-    
-    printf (" %s\n", filename);
-    fclose (inFile);
-    return c;
-}
-
-
-int main(int argc, char *argv[]) {
-    char *socket_name = argv[1];  //IP地址和端口号
-    char *file_name = argv[2];  //文件
-
-    char *ans = read_file(file_name);
-    printf("%s", ans);
-
-    int clientfd = create_socket();
-    printf("socket ok!\n");
-//客户端可以不绑定IP地址和端口号，系统会随机分配
-//客户端连接服务器
-    int ret = 0;
-    int addrlen = 0;
-    struct sockaddr_in server_address = {0};
-    server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(8888);  //host to network
-    server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
-    addrlen = sizeof(server_address);
-
-
-    ret = connect(clientfd, (struct sockaddr *) &server_address, addrlen); //连接到服务器
-    if (ret < 0) {
-        perror("connect failed");
-        close(clientfd);
-        return -1;
-    }
-    printf("connect success\n");
-//调用send向服务器发送消息
-    while (1) {
-        int sed = 0;
-        int rev = 0;
-        char buf[1024] = {0};
-        scanf("%s", buf);
-        sed = send(clientfd, buf, strlen(buf), 0);
-        if (sed < 0) {
-            perror("send failed");
-            close(clientfd);
-            return -1;
-        }
-        printf("send success\n");
-
-        memset(buf, 0, sizeof(buf));
-        rev = recv(clientfd, buf, sizeof(buf), 0);
-        if (rev > 0) {
-            printf("本次收到了%d个字节\n", rev);
-            printf("receive: %s\n", buf);
-        }
-
-    }
-    close(clientfd);
-
-
-    return 0;
-}
-
-
-=======
-
 //
 // Created by Rustylake on 2022/3/25.
 //
@@ -179,6 +49,11 @@ int create_socket() {
     return client_fd;
 }
 
+/**
+ * 文件读取
+ * @param file_name
+ * @return
+ */
 char *read_file(char *file_name) {
     FILE *file_ptr;
     char static buff[102400];
@@ -188,45 +63,8 @@ char *read_file(char *file_name) {
     return buff;
 }
 
-/**
- *
- * @param c
- * @param input_string
- */
-// void getMD5(unsigned char*c,char *input_string) {
-//     //unsigned static char c[MD5_DIGEST_LENGTH+1];
-//     char *filename = input_string;
-//     int i;
-//     FILE *inFile = fopen (filename, "rb");
-//     MD5_CTX mdContext;
-//     int bytes;
-//     unsigned char data[1024];
-
-//     if (inFile == NULL) {
-//         printf ("%s can't be opened.\n", filename);
-//         return ;
-//     }
-
-//     MD5_Init (&mdContext);
-//     while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
-//         MD5_Update (&mdContext, data, bytes);
-//     }
-
-//     MD5_Final (c,&mdContext);
-
-// //    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
-// //      printf("%02x", c[i]);
-// //    }
-//     //printf (" %s\n", filename);
-//     fclose (inFile);
-// }
 
 
-//void My_print(unsigned char *ptr) {
-//    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-//        printf("%02x", ptr[i]);
-//    }
-//}
 
 
 
@@ -311,4 +149,4 @@ int main(int argc, char *argv[]) {
     close(clientfd);
     return 0;
 }
->>>>>>> 6ec68ab (完成了fork部分)
+

@@ -9,8 +9,59 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/time.h>
+//#include <openssl/md5.h>
 #define SEND_AND_RECEIVE_LENGTH 274
 
+/* MD5函数*/
+// void getMD5(unsigned char*c,char *input_string) {
+//     //unsigned static char c[MD5_DIGEST_LENGTH+1];
+//     char *filename = input_string;
+//     int i;
+//     FILE *inFile = fopen (filename, "rb");
+//     MD5_CTX mdContext;
+//     int bytes;
+//     unsigned char data[1024];
+
+//     if (inFile == NULL) {
+//         printf ("%s can't be opened.\n", filename);
+//         return ;
+//     }
+
+//     MD5_Init (&mdContext);
+//     while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
+//         MD5_Update (&mdContext, data, bytes);
+//     }
+
+//     MD5_Final (c,&mdContext);
+
+// //    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+// //      printf("%02x", c[i]);
+// //    }
+//     //printf (" %s\n", filename);
+//     fclose (inFile);
+// }
+
+/* 打印MD5 hash*/
+//void My_print(unsigned char *ptr) {
+//    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+//        printf("%02x", ptr[i]);
+//    }
+//}
+
+
+/**
+ * 文件读取
+ * @param file_name
+ * @return
+ */
+char *read_file(char *file_name) {
+    FILE *file_ptr;
+    char static buff[102400];
+    file_ptr = fopen(file_name, "r");
+    fread(buff, 1, 100000, file_ptr);
+    fclose(file_ptr);  //关闭文件
+    return buff;
+}
 /* Subtract the ‘struct timeval’ values X and Y,
    storing the result in RESULT.
    Return 1 if the difference is negative, otherwise 0. */
@@ -110,7 +161,6 @@ int main(int argc, char *argv[]) {
 
 // Do something
 
-//强哥内容
 /**
     sendto(
             sockfd,
@@ -122,6 +172,7 @@ int main(int argc, char *argv[]) {
     );
 */
 //=========================进行通信 发送数据 write()
+/** 只传输一次文件，不需要while
     while (1) {
         int client_send_res = send(  //发送
                 sockfd,
@@ -150,6 +201,8 @@ int main(int argc, char *argv[]) {
         }
         printf("来自服务器：%s\n", rece_msg);
     }
+*/
+
     int client_send_res = send(  //发送
         sockfd,
         header,  //发送内容
@@ -171,14 +224,25 @@ int main(int argc, char *argv[]) {
             SEND_AND_RECEIVE_LENGTH,
             0
             );
-    if (rece_res == -1) { //接受失败
+
+    if (rece_res == -1) { //接受失败，没有收到ok，等待重传
         perror("fail to recv");
+        for (int i = 0; i < 3; i++) {  //等待1s后重传
+            sleep(1);
+            int rece_res = recv(
+                    sockfd,
+                    rece_msg,  //收到的内容
+                    SEND_AND_RECEIVE_LENGTH,
+                    0
+            );
+            printf("等待一秒的输出\n");
+        }
         exit(1);
     }
     printf("来自服务器：%s\n", rece_msg);
 
     close(sockfd); //关闭连接
-//强哥内容
+
 /**
     fptr = fopen(filename, "r");  //打开文件
 
