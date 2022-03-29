@@ -67,17 +67,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
-CMAKE_SOURCE_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans/cmake-build-debug
-=======
 CMAKE_SOURCE_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug
->>>>>>> 6ec68ab (完成了fork部分)
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -106,15 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< HEAD
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans/cmake-build-debug/CMakeFiles /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans/cmake-build-debug//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans/cmake-build-debug/CMakeFiles 0
-=======
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles 0
->>>>>>> 6ec68ab (完成了fork部分)
 .PHONY : all
 
 # The main clean target
@@ -143,31 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-<<<<<<< HEAD
-# Target rules for targets named file_trans
+# Target rules for targets named main.c
 
 # Build rule for target.
-file_trans: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_trans
-.PHONY : file_trans
+main.c: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main.c
+.PHONY : main.c
 
 # fast build rule for target.
-file_trans/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/build
-.PHONY : file_trans/fast
-=======
-# Target rules for targets named assignment
-
-# Build rule for target.
-assignment: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assignment
-.PHONY : assignment
-
-# fast build rule for target.
-assignment/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/build
-.PHONY : assignment/fast
->>>>>>> 6ec68ab (完成了fork部分)
+main.c/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/build
+.PHONY : main.c/fast
 
 client.o: client.c.o
 
@@ -175,11 +148,7 @@ client.o: client.c.o
 
 # target to build an object file
 client.c.o:
-<<<<<<< HEAD
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/client.c.o
-=======
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/client.c.o
->>>>>>> 6ec68ab (完成了fork部分)
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/client.c.o
 .PHONY : client.c.o
 
 client.i: client.c.i
@@ -188,11 +157,7 @@ client.i: client.c.i
 
 # target to preprocess a source file
 client.c.i:
-<<<<<<< HEAD
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/client.c.i
-=======
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/client.c.i
->>>>>>> 6ec68ab (完成了fork部分)
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/client.c.i
 .PHONY : client.c.i
 
 client.s: client.c.s
@@ -201,8 +166,7 @@ client.s: client.c.s
 
 # target to generate assembly for a file
 client.c.s:
-<<<<<<< HEAD
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/client.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/client.c.s
 .PHONY : client.c.s
 
 md5.o: md5.c.o
@@ -211,7 +175,7 @@ md5.o: md5.c.o
 
 # target to build an object file
 md5.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/md5.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/md5.c.o
 .PHONY : md5.c.o
 
 md5.i: md5.c.i
@@ -220,7 +184,7 @@ md5.i: md5.c.i
 
 # target to preprocess a source file
 md5.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/md5.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/md5.c.i
 .PHONY : md5.c.i
 
 md5.s: md5.c.s
@@ -229,38 +193,8 @@ md5.s: md5.c.s
 
 # target to generate assembly for a file
 md5.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/md5.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/md5.c.s
 .PHONY : md5.c.s
-=======
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/client.c.s
-.PHONY : client.c.s
-
-main.o: main.c.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/main.c.s
-.PHONY : main.c.s
 
 receivemetcp.o: receivemetcp.c.o
 
@@ -268,7 +202,7 @@ receivemetcp.o: receivemetcp.c.o
 
 # target to build an object file
 receivemetcp.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/receivemetcp.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/receivemetcp.c.o
 .PHONY : receivemetcp.c.o
 
 receivemetcp.i: receivemetcp.c.i
@@ -277,7 +211,7 @@ receivemetcp.i: receivemetcp.c.i
 
 # target to preprocess a source file
 receivemetcp.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/receivemetcp.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/receivemetcp.c.i
 .PHONY : receivemetcp.c.i
 
 receivemetcp.s: receivemetcp.c.s
@@ -286,7 +220,7 @@ receivemetcp.s: receivemetcp.c.s
 
 # target to generate assembly for a file
 receivemetcp.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/receivemetcp.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/receivemetcp.c.s
 .PHONY : receivemetcp.c.s
 
 sendmetcp.o: sendmetcp.c.o
@@ -295,7 +229,7 @@ sendmetcp.o: sendmetcp.c.o
 
 # target to build an object file
 sendmetcp.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/sendmetcp.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/sendmetcp.c.o
 .PHONY : sendmetcp.c.o
 
 sendmetcp.i: sendmetcp.c.i
@@ -304,7 +238,7 @@ sendmetcp.i: sendmetcp.c.i
 
 # target to preprocess a source file
 sendmetcp.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/sendmetcp.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/sendmetcp.c.i
 .PHONY : sendmetcp.c.i
 
 sendmetcp.s: sendmetcp.c.s
@@ -313,9 +247,8 @@ sendmetcp.s: sendmetcp.c.s
 
 # target to generate assembly for a file
 sendmetcp.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/sendmetcp.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/sendmetcp.c.s
 .PHONY : sendmetcp.c.s
->>>>>>> 6ec68ab (完成了fork部分)
 
 server.o: server.c.o
 
@@ -323,11 +256,7 @@ server.o: server.c.o
 
 # target to build an object file
 server.c.o:
-<<<<<<< HEAD
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/server.c.o
-=======
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/server.c.o
->>>>>>> 6ec68ab (完成了fork部分)
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/server.c.o
 .PHONY : server.c.o
 
 server.i: server.c.i
@@ -336,11 +265,7 @@ server.i: server.c.i
 
 # target to preprocess a source file
 server.c.i:
-<<<<<<< HEAD
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/server.c.i
-=======
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/server.c.i
->>>>>>> 6ec68ab (完成了fork部分)
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/server.c.i
 .PHONY : server.c.i
 
 server.s: server.c.s
@@ -349,11 +274,7 @@ server.s: server.c.s
 
 # target to generate assembly for a file
 server.c.s:
-<<<<<<< HEAD
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_trans.dir/build.make CMakeFiles/file_trans.dir/server.c.s
-=======
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assignment.dir/build.make CMakeFiles/assignment.dir/server.c.s
->>>>>>> 6ec68ab (完成了fork部分)
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/server.c.s
 .PHONY : server.c.s
 
 # Help Target
@@ -364,29 +285,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-<<<<<<< HEAD
-	@echo "... file_trans"
+	@echo "... main.c"
 	@echo "... client.o"
 	@echo "... client.i"
 	@echo "... client.s"
 	@echo "... md5.o"
 	@echo "... md5.i"
 	@echo "... md5.s"
-=======
-	@echo "... assignment"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 	@echo "... receivemetcp.o"
 	@echo "... receivemetcp.i"
 	@echo "... receivemetcp.s"
 	@echo "... sendmetcp.o"
 	@echo "... sendmetcp.i"
 	@echo "... sendmetcp.s"
->>>>>>> 6ec68ab (完成了fork部分)
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"

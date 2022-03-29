@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Install script for directory: /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans
-=======
 # Install script for directory: /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment
->>>>>>> 6ec68ab (完成了fork部分)
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,9 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD
-file(WRITE "/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/file_trans/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
-=======
 file(WRITE "/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> 6ec68ab (完成了fork部分)
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

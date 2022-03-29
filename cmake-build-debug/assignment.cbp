@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="assignment">
-				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
+			<Target title="main.c">
+				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/main.c" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -51,14 +51,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 main.c"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="assignment/fast">
-				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
+			<Target title="main.c/fast">
+				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/main.c" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -71,7 +71,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 main.c/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -79,19 +79,19 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/client.c">
-			<Option target="assignment"/>
+			<Option target="main.c"/>
 		</Unit>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/main.c">
-			<Option target="assignment"/>
+		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/md5.c">
+			<Option target="main.c"/>
 		</Unit>
 		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/receivemetcp.c">
-			<Option target="assignment"/>
+			<Option target="main.c"/>
 		</Unit>
 		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/sendmetcp.c">
-			<Option target="assignment"/>
+			<Option target="main.c"/>
 		</Unit>
 		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/server.c">
-			<Option target="assignment"/>
+			<Option target="main.c"/>
 		</Unit>
 		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
