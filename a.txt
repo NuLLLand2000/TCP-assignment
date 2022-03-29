@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+abcdwfghijklmn
+=======
+helllo world
+>>>>>>> 6ec68ab (完成了fork部分)
