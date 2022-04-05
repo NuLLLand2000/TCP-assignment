@@ -2,39 +2,48 @@
 #include <openssl/md5.h>
 
 
-unsigned char* getMD5(char *input_string) {
-	unsigned static char c[MD5_DIGEST_LENGTH];
-    //char *filename="md5.c";
-	char *filename = input_string;
-    int i;
-    FILE *inFile = fopen (filename, "rb");
-    MD5_CTX mdContext;
-    int bytes;
-    unsigned char data[1024];
+char * calculate_file_md5(const char *filename) {
+	unsigned char c[MD5_DIGEST_LENGTH];
+	int i;
+	MD5_CTX mdContext;
+	int bytes;
+	unsigned char data[1024];
+	char *filemd5 = (char*) malloc(33 *sizeof(char));
 
-    if (inFile == NULL) {
-        printf ("%s can't be opened.\n", filename);
-        return 0;
-    }
+	FILE *inFile = fopen (filename, "rb");
+	if (inFile == NULL) {
+		perror(filename);
+		return 0;
+	}
 
-    MD5_Init (&mdContext);
-    while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
-        MD5_Update (&mdContext, data, bytes);
-    }
-    
-    MD5_Final (c,&mdContext);
-    
-    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
-    	printf("%02x", c[i]);
-    }
-    
-    printf (" %s\n", filename);
-    fclose (inFile);
-    return c;
+	MD5_Init (&mdContext);
+
+	while ((bytes = fread (data, 1, 1024, inFile)) != 0)
+
+	MD5_Update (&mdContext, data, bytes);
+
+	MD5_Final (c,&mdContext);
+
+	for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+		sprintf(&filemd5[i*2], "%02x", (unsigned int)c[i]);
+	}
+
+	//printf("calculated md5:%s ", filemd5);
+	//printf (" %s\n", filename);
+	fclose (inFile);
+	return filemd5;
 }
 
-int main(int argc, char *argv[]) {
-	char *file_name = argv[1];
-	printf("%s", getMD5(file_name));
-    return 0;
+int main(int argc, char **argv) {
+	char * predefined_md5 = "8e2745d333daa9666a8bbebcd32a39bb";
+	char *new_md5 = calculate_file_md5("a.txt");
+
+        if (!strcmp(predefined_md5, new_md5)) {
+                printf("md5 matched\n");
+        } else {
+                printf("md5 not matched\n");
+        }
+	free(new_md5);
+	return 0;
 }
+

@@ -9,44 +9,42 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/time.h>
-//#include <openssl/md5.h>
+#include <openssl/md5.h>
 #define SEND_AND_RECEIVE_LENGTH 274
 
-/* MD5函数*/
-// void getMD5(unsigned char*c,char *input_string) {
-//     //unsigned static char c[MD5_DIGEST_LENGTH+1];
-//     char *filename = input_string;
-//     int i;
-//     FILE *inFile = fopen (filename, "rb");
-//     MD5_CTX mdContext;
-//     int bytes;
-//     unsigned char data[1024];
 
-//     if (inFile == NULL) {
-//         printf ("%s can't be opened.\n", filename);
-//         return ;
-//     }
+/*计算md5 hash*/
+char * calculate_file_md5(const char *filename) {
+	unsigned char c[MD5_DIGEST_LENGTH];
+	int i;
+	MD5_CTX mdContext;
+	int bytes;
+	unsigned char data[1024];
+	char *filemd5 = (char*) malloc(33 *sizeof(char));
 
-//     MD5_Init (&mdContext);
-//     while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
-//         MD5_Update (&mdContext, data, bytes);
-//     }
+	FILE *inFile = fopen (filename, "rb");
+	if (inFile == NULL) {
+		perror(filename);
+		return 0;
+	}
 
-//     MD5_Final (c,&mdContext);
+	MD5_Init (&mdContext);
 
-// //    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
-// //      printf("%02x", c[i]);
-// //    }
-//     //printf (" %s\n", filename);
-//     fclose (inFile);
-// }
+	while ((bytes = fread (data, 1, 1024, inFile)) != 0)
 
-/* 打印MD5 hash*/
-//void My_print(unsigned char *ptr) {
-//    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-//        printf("%02x", ptr[i]);
-//    }
-//}
+	MD5_Update (&mdContext, data, bytes);
+
+	MD5_Final (c,&mdContext);
+
+	for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+		sprintf(&filemd5[i*2], "%02x", (unsigned int)c[i]);
+	}
+
+	//printf("calculated md5:%s ", filemd5);
+	//printf (" %s\n", filename);
+	fclose (inFile);
+	return filemd5;
+}
 
 
 /**
@@ -101,6 +99,8 @@ int main(int argc, char *argv[]) {
 
     char **tokens;
     FILE *fptr;
+    
+    
 
     if (argc != 3) {
         fprintf(stderr, "usage: %s <HOSTNAME:PORT> <FILENAME>\n", argv[0]);
@@ -110,6 +110,17 @@ int main(int argc, char *argv[]) {
     char *Desthost = strtok(argv[1], delim);   //IP地址
     char *Destport = strtok(NULL, delim);  //端口号
     char *filename = argv[2];
+    
+    //TODO 发送文件内容并统计字节数
+    fptr = fopen(filename, "r");  //打开文件
+    int byte_num = 0; //字节数
+    for (;;) {
+        memset(buffer, 0, sizeof(buffer));
+        int f_code = fread(buffer, 1, 1000, (FILE *) fptr);
+        if (f_code == 0) { //打开失败
+            break;
+        }
+        byte_num += f_code;
 
     printf("Opening %s sending to %s:%s \n", filename, Desthost, Destport);
 
@@ -117,7 +128,8 @@ int main(int argc, char *argv[]) {
 
 
 //============================计算md5
-    char md5[] = "334bf81dc9377c2c0bab14ffa6f43bcb";  //假设计算完成
+    char *md5 = calculate_file_md5("a.txt");
+    
     char header[1024] = ""; //定义header
 
 
@@ -163,36 +175,6 @@ int main(int argc, char *argv[]) {
 // Do something
 
 //=========================进行通信 发送数据 write()
-/** 只传输一次文件，不需要while
-    while (1) {
-        int client_send_res = send(  //发送
-                sockfd,
-                header,  //发送内容
-                SEND_AND_RECEIVE_LENGTH,  //发送内容的长度 256+1+16+1
-                0 //阻塞
-        );
-        if (client_send_res == -1) {  //发送失败
-            perror("fail to send");
-            exit(1);
-        }
-        printf("数据发送成功, 准备接受数据\n");
-
-        //=========================接受服务器的数据 read()
-
-        char rece_msg[SEND_AND_RECEIVE_LENGTH] = "";
-        int rece_res = recv(
-                sockfd,
-                rece_msg,  //收到的内容
-                SEND_AND_RECEIVE_LENGTH,
-                0
-        );
-        if (rece_res == -1) { //接受失败
-            perror("fail to recv");
-            exit(1);
-        }
-        printf("来自服务器：%s\n", rece_msg);
-    }
-*/
 
     char rece_msg[SEND_AND_RECEIVE_LENGTH] = ""; //接收数据的缓存
 
@@ -234,16 +216,7 @@ int main(int argc, char *argv[]) {
     }
     printf("来自服务器的消息：%s\n", rece_msg);
 
-    //TODO 发送文件内容并统计字节数
-    fptr = fopen(filename, "r");  //打开文件
-    int byte_num = 0; //字节数
-    for (;;) {
-        memset(buffer, 0, sizeof(buffer));
-        int f_code = fread(buffer, 1, 1000, (FILE *) fptr);
-        if (f_code == 0) { //打开失败
-            break;
-        }
-        byte_num += f_code;
+
         //TODO 发送文件内容
         int client_send_file_res = send(  //发送
                 sockfd,

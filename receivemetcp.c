@@ -9,41 +9,43 @@
 #include <netdb.h>
 #include <time.h>
 #include <unistd.h>
-//#include <openssl/md5.h>
+#include <openssl/md5.h>
+#include <sys/wait.h>
 
 #define SEND_AND_RECEIVE_LENGTH 274
 
 /*MD5函数*/
-// void getMD5(unsigned char*c,char *input_string) {
-//     //unsigned static char c[MD5_DIGEST_LENGTH+1];
-//     char *filename = input_string;
-//     int i;
-//     FILE *inFile = fopen (filename, "rb");
-//     MD5_CTX mdContext;
-//     int bytes;
-//     unsigned char data[1024];
+char * calculate_file_md5(const char *filename) {
+	unsigned char c[MD5_DIGEST_LENGTH];
+	int i;
+	MD5_CTX mdContext;
+	int bytes;
+	unsigned char data[1024];
+	char *filemd5 = (char*) malloc(33 *sizeof(char));
 
-//     if (inFile == NULL) {
-//         printf ("%s can't be opened.\n", filename);
-//         return ;
-//     }
+	FILE *inFile = fopen (filename, "rb");
+	if (inFile == NULL) {
+		perror(filename);
+		return 0;
+	}
 
-//     MD5_Init (&mdContext);
-//     while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
-//         MD5_Update (&mdContext, data, bytes);
-//     }
+	MD5_Init (&mdContext);
 
-//     MD5_Final (c,&mdContext);
+	while ((bytes = fread (data, 1, 1024, inFile)) != 0)
 
-// //    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
-// //      printf("%02x", c[i]);
-// //    }
-//     //printf (" %s\n", filename);
-//     fclose (inFile);
-// }
+	MD5_Update (&mdContext, data, bytes);
 
+	MD5_Final (c,&mdContext);
 
+	for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+		sprintf(&filemd5[i*2], "%02x", (unsigned int)c[i]);
+	}
 
+	//printf("calculated md5:%s ", filemd5);
+	//printf (" %s\n", filename);
+	fclose (inFile);
+	return filemd5;
+}
 
 /**
  * 进程处理，等待函数
@@ -278,7 +280,10 @@ int main(int argc, char *argv[]) {
             //写入文件
             char file_name[260] = "received_files/";
             strcat(file_name, pch);
-            system("mkdir received_files");
+            int res = system("mkdir received_files");
+            if (res == -1) {
+                perror("目录已经存在");
+            }
             FILE *fp;
             fp = fopen (file_name, "w+");
 
@@ -286,9 +291,17 @@ int main(int argc, char *argv[]) {
                 fputc(receive_file[i], fp);
             }
             fclose (fp);
+            
+            //校验md5hash
+            char * rece_md5 = calculate_file_md5("received_files/a.txt");
+            char md5_stat[100] = "";
+            if (!strcmp(predefined_md5, rece_md5)) {
+                md5_stat = "MD5 matched\n";
+            } else {
+                md5_stat = "md5 not matched\n";
+            }
 
-
-            printf("%f | %s:%u | %s | %ld | %e | %f[s] | \n",
+            printf("%f | %s:%u | %s | %ld | %e | %f[s] | %s\n",
                    time_2_dbl(GTOD_before),  //连接时间
                    inet_ntoa(clientAddress.sin_addr), //客户端地址与端口
                    ntohs(clientAddress.sin_port),
@@ -296,7 +309,7 @@ int main(int argc, char *argv[]) {
                    strlen(receive_file), //传输大小 %d
                    (sizeof(receive_file) * 8) / time_2_dbl(difference),  //传输速率 %e
                    time_2_dbl(difference) //持续时间
-                    //hash match %s
+                   md5_stat //md5是否匹配
             );
 
         }
