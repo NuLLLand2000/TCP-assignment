@@ -52,7 +52,7 @@
 /**
  * 文件读取
  * @param file_name
- * @return
+ * @returne
  */
 char *read_file(char *file_name) {
     FILE *file_ptr;
@@ -62,6 +62,7 @@ char *read_file(char *file_name) {
     fclose(file_ptr);  //关闭文件
     return buff;
 }
+
 /* Subtract the ‘struct timeval’ values X and Y,
    storing the result in RESULT.
    Return 1 if the difference is negative, otherwise 0. */
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]) {
     struct addrinfo hints, *servinfo, *p;
     int rv;
     int numbytes, numread;
-    char buffer[1450];
+    char buffer[1450]; //要发送文件内容的缓存
 
     struct timeval GTOD_before, GTOD_after, difference;
 
@@ -161,16 +162,6 @@ int main(int argc, char *argv[]) {
 
 // Do something
 
-/**
-    sendto(
-            sockfd,
-            header, //发送内容
-            1000,
-            0,
-            (struct sockaddr *) &server_addr,
-            sock_addr_length
-    );
-*/
 //=========================进行通信 发送数据 write()
 /** 只传输一次文件，不需要while
     while (1) {
@@ -203,68 +194,83 @@ int main(int argc, char *argv[]) {
     }
 */
 
-    int client_send_res = send(  //发送
-        sockfd,
-        header,  //发送内容
-        SEND_AND_RECEIVE_LENGTH,  //发送内容的长度 256+1+16+1
-        0 //阻塞
-    );
-    if (client_send_res == -1) {  //发送失败
-        perror("fail to send");
-        exit(1);
-    }
-    printf("数据发送成功, 准备接受数据\n");
+    char rece_msg[SEND_AND_RECEIVE_LENGTH] = ""; //接收数据的缓存
+
+    // 最多允许尝试5次发送数据，失败就退出
+    int try_times;
+    for (try_times = 0; try_times < 5; try_times++) {
+        int client_send_res = send(  //发送
+                sockfd,
+                header,  //发送内容
+                SEND_AND_RECEIVE_LENGTH,  //发送内容的长度 256+1+16+1
+                0 //阻塞
+        );
+        if (client_send_res == -1) {  //发送失败
+            perror("fail to send");
+            exit(1);
+        }
+        printf("header发送成功, 准备接受数据\n");
 
 //=========================接受服务器的数据 read()
 
-    char rece_msg[SEND_AND_RECEIVE_LENGTH] = "";
-    int rece_res = recv(
-            sockfd,
-            rece_msg,  //收到的内容
-            SEND_AND_RECEIVE_LENGTH,
-            0
-            );
-
-    if (rece_res == -1) { //接受失败，没有收到ok，等待重传
-        perror("fail to recv");
-        for (int i = 0; i < 3; i++) {  //等待1s后重传
-            sleep(1);
-            int rece_res = recv(
-                    sockfd,
-                    rece_msg,  //收到的内容
-                    SEND_AND_RECEIVE_LENGTH,
-                    0
-            );
-            printf("等待一秒的输出\n");
+        int rece_res = recv(
+                sockfd,
+                rece_msg,  //收到的内容
+                SEND_AND_RECEIVE_LENGTH,
+                0
+        );
+        if (rece_res == -1) { //接受失败，没有收到ok，等待重传
+            perror("fail to recv\n");
+            printf("正在重传，请稍后\n");
+            sleep(3);  //等待3s后重传
+        } else {
+            break;
         }
+    }
+    if (try_times == 4) { //如果连接5次仍然失败，退出连接
+        close(sockfd); //关闭连接
+        printf("连接失败，程序终止。\n");
         exit(1);
     }
-    printf("来自服务器：%s\n", rece_msg);
+    printf("来自服务器的消息：%s\n", rece_msg);
 
-    close(sockfd); //关闭连接
-
-/**
+    //TODO 发送文件内容并统计字节数
     fptr = fopen(filename, "r");  //打开文件
-
-    int cnt = 0;
+    int byte_num = 0; //字节数
     for (;;) {
         memset(buffer, 0, sizeof(buffer));
         int f_code = fread(buffer, 1, 1000, (FILE *) fptr);
-        if (f_code == 0) break;
-        cnt += f_code;
-        int m = sendto(sockfd, buffer, 1000, 0, (struct sockaddr *) &server_addr, sock_addr_length);
-        if (m == -1)return 0;
+        if (f_code == 0) { //打开失败
+            break;
+        }
+        byte_num += f_code;
+        //TODO 发送文件内容
+        int client_send_file_res = send(  //发送
+                sockfd,
+                buffer,  //发送文件内容
+                1450,  //发送内容的长度 256+1+16+1
+                0 //阻塞
+        );
+        if (client_send_file_res == -1) {  //发送失败
+            perror("文件内容发送失败\n");
+            exit(1);
+        }
+        printf("文件内容发送成功\n");
+
     }
-    printf(", Sent %d bytes,in", cnt);
-*/
+    printf("发送的字节数为 %d\n", byte_num);
+    close(sockfd); //关闭连接
+    printf("与服务器的连接断开\n");
+
+
     gettimeofday(&GTOD_after, NULL);
 
     timeval_subtract(&difference, &GTOD_after, &GTOD_before);  //传输时间差
 
     if (difference.tv_sec > 0) {
-        printf("%ld.%06d [s]\n", difference.tv_sec, difference.tv_usec);
+        printf("传输持续时间为%ld.%06d [s]\n", difference.tv_sec, difference.tv_usec);
     } else {
-        printf("%6d [us]\n", difference.tv_usec);
+        printf("传输持续时间为%6d [us]\n", difference.tv_usec);
     }
 
     return 0;

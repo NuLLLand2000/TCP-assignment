@@ -9,8 +9,41 @@
 #include <netdb.h>
 #include <time.h>
 #include <unistd.h>
+//#include <openssl/md5.h>
 
 #define SEND_AND_RECEIVE_LENGTH 274
+
+/*MD5函数*/
+// void getMD5(unsigned char*c,char *input_string) {
+//     //unsigned static char c[MD5_DIGEST_LENGTH+1];
+//     char *filename = input_string;
+//     int i;
+//     FILE *inFile = fopen (filename, "rb");
+//     MD5_CTX mdContext;
+//     int bytes;
+//     unsigned char data[1024];
+
+//     if (inFile == NULL) {
+//         printf ("%s can't be opened.\n", filename);
+//         return ;
+//     }
+
+//     MD5_Init (&mdContext);
+//     while ((bytes = fread (data, 1, 1024, inFile)) != 0) {
+//         MD5_Update (&mdContext, data, bytes);
+//     }
+
+//     MD5_Final (c,&mdContext);
+
+// //    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+// //      printf("%02x", c[i]);
+// //    }
+//     //printf (" %s\n", filename);
+//     fclose (inFile);
+// }
+
+
+
 
 /**
  * 进程处理，等待函数
@@ -49,8 +82,8 @@ int create_server_socket(int port) {
     bzero(&server_addr, length);
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);  //主机到网络的转换 监听的端口
-//    server_addr.sin_addr.s_addr = htonl(INADDR_ANY); //本机地址，监听socket
-    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); //本机地址，监听socket
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY); //本机地址，监听socket
+//    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); //本机地址，监听socket
 
     //======================绑定
     int bind_res = bind(server_sock_fd, (struct sockaddr *) &server_addr, length);
@@ -89,35 +122,48 @@ int timeval_subtract(struct timeval *result, struct timeval *x, struct timeval *
 }
 
 
-//void *get_in_addr(struct sockaddr *sa) {
-//    if (sa->sa_family == AF_INET) {
-//        return &(((struct sockaddr_in *) sa)->sin_addr);
-//    }
-//
-//    return &(((struct sockaddr_in6 *) sa)->sin6_addr);
-//}
+void *get_in_addr(struct sockaddr *sa) {
+    if (sa->sa_family == AF_INET) {
+        return &(((struct sockaddr_in *) sa)->sin_addr);
+    }
+
+    return &(((struct sockaddr_in6 *) sa)->sin6_addr);
+}
 
 
 //Convert a struct sockaddr address to a string, IPv4 and IPv6:
-//char *get_ip_str(const struct sockaddr *sa, char *s, size_t maxlen) {
-//    switch (sa->sa_family) {
-//        case AF_INET:
-//            inet_ntop(AF_INET, &(((struct sockaddr_in *) sa)->sin_addr),
-//                      s, maxlen);
-//            break;
-//
-//        case AF_INET6:
-//            inet_ntop(AF_INET6, &(((struct sockaddr_in6 *) sa)->sin6_addr),
-//                      s, maxlen);
-//            break;
-//
-//        default:
-//            strncpy(s, "Unknown AF", maxlen);
-//            return NULL;
-//    }
-//
-//    return s;
-//}
+char *get_ip_str(const struct sockaddr *sa, char *s, size_t maxlen) {
+    switch (sa->sa_family) {
+        case AF_INET:
+            inet_ntop(AF_INET, &(((struct sockaddr_in *) sa)->sin_addr),
+                      s, maxlen);
+            break;
+
+        case AF_INET6:
+            inet_ntop(AF_INET6, &(((struct sockaddr_in6 *) sa)->sin6_addr),
+                      s, maxlen);
+            break;
+
+        default:
+            strncpy(s, "Unknown AF", maxlen);
+            return NULL;
+    }
+
+    return s;
+}
+
+/**
+ * timeval的结构体转化为double
+ * @param time_value timeval变量
+ * @return double变量
+ */
+double time_2_dbl(struct timeval time_value) {
+    double new_time = 0;
+    new_time = (double) (time_value.tv_usec);
+    new_time /= 1000000;
+    new_time += (double) time_value.tv_sec;
+    return (new_time);
+}
 
 static const char *program_name;
 
@@ -125,6 +171,8 @@ int main(int argc, char *argv[]) {
     int listenfd;  //to create socket
     int accept_fd;  //to accept connection
     childCnt = 0;// Will increment for each spawned child.
+
+    struct timeval GTOD_before, GTOD_after, difference; //用来处理时间
 
     struct addrinfo hints, *servinfo, *p;
     int rv;
@@ -177,11 +225,12 @@ int main(int argc, char *argv[]) {
         if (accept_fd == -1) {
             return 0;
         }
+        gettimeofday(&GTOD_before, NULL);  //连接成功的时间
         //连接的客户端信息
         printf("ip:%s, port:%d\n",
                inet_ntoa(clientAddress.sin_addr),
                ntohs(clientAddress.sin_port)
-               );
+        );
 
         //fork 创建子进程，父亲继续连接，子和客户端通信
         pid_t pid;
@@ -189,86 +238,67 @@ int main(int argc, char *argv[]) {
             perror("进程创建错误\n");
             exit(1);
         } else if (pid > 0) {
-            //父亲accpet，在次阻塞
+            //父亲accept，阻塞
         } else {
             //子通信
             //服务器接收
-            char receive_msg[SEND_AND_RECEIVE_LENGTH] = "";
+            char receive_header[SEND_AND_RECEIVE_LENGTH] = "";
             ssize_t bytes;
 
-            if ((bytes = recv(accept_fd, receive_msg, SEND_AND_RECEIVE_LENGTH, 0)) == -1) {
+            if ((bytes = recv(accept_fd, receive_header, SEND_AND_RECEIVE_LENGTH, 0)) == -1) {
                 perror("接收信息失败");
             } else if (bytes == 0) {
                 printf("客户端退出\n");
             }
-            printf("来自客户端：%s", receive_msg);
+            printf("来自客户端的消息：%s\n", receive_header);
 
             //服务器发送信息
             int send_res = send(accept_fd, "ok\n", SEND_AND_RECEIVE_LENGTH, 0);
             if (send_res == -1) {
-                perror("服务器发送失败");
+                perror("服务器发送失败\n");
                 exit(1);
             }
-            close(accept_fd);
 
-            /**
-            char buffer[1001];
-            memset(buffer, 0, sizeof(buffer));
-            int r_code = recv(accept_fd, buffer, 1000, 0);
-            char filename[500];
-            int pos = -1, lenbuf = strlen(buffer);
-            for (int i = 0; i < lenbuf; i++) {
-                if (buffer[i] == '/' || buffer[i] == '\\') pos = i;
+            //再次接受信息
+            char receive_file[SEND_AND_RECEIVE_LENGTH] = "";
+            ssize_t rece_stat2 = recv(accept_fd, receive_file, SEND_AND_RECEIVE_LENGTH, 0);
+            if (rece_stat2 == -1) {
+                perror("文件内容接收失败\n");
             }
-            if (pos == -1) {
-                strcpy(filename, buffer);
-            } else {
-                memcpy(filename, &buffer[pos + 1], lenbuf - pos - 1);
-                if (filename[lenbuf - pos - 2] == '\'') {
-                    filename[lenbuf - pos - 2] = '\0';
-                } else {
-                    filename[lenbuf - pos - 1] = '\0';
-                }
+            printf("收到的文件内容为:\n%s\n", receive_file);
+
+            gettimeofday(&GTOD_after, NULL);  //结束时间
+
+            timeval_subtract(&difference, &GTOD_after, &GTOD_before);  //传输时间差
+            close(accept_fd);
+            printf("客户端已断开连接\n");
+
+            char *pch = strtok(receive_header, " "); //split header with " "
+
+            //写入文件
+            char file_name[260] = "received_files/";
+            strcat(file_name, pch);
+            system("mkdir received_files");
+            FILE *fp;
+            fp = fopen (file_name, "w+");
+
+            for (int i = 0; i < strlen(receive_file); i++) {
+                fputc(receive_file[i], fp);
             }
-            FILE *fp = fopen(filename, "r");
-            int x = 2;
-            while (fp != NULL) {
-                char tmp[500];
-                strcpy(tmp, filename);
-                int l = strlen(tmp);
-                tmp[l] = '.';
-                tmp[l + 1] = x + '0';
-                x++;
-                tmp[l + 2] = '\0';
-                fp = fopen(tmp, "r");
-                if (fp == NULL) {
-                    strcpy(filename, tmp);
-                }
-            }
-            fp = fopen(filename, "w+");
-            int cnt = 0;
-            while (1) {
-                memset(buffer, 0, sizeof(buffer));
-                int r_code = recv(accept_fd, buffer, 1000, 0);
-                cnt += strlen(buffer);
-                if (r_code == -1 || r_code == 0) break;
-                fwrite(buffer, strlen(buffer), 1, fp);
-            }
-            char domain[50] = "";
-            if (strcmp(inet_ntoa(clientAddress.sin_addr), "127.0.0.1") == 0) strcpy(domain, "(localhost)");
-            long now = time(NULL);
-            printf("%ld | %s:%u%s | %s | %d | %e | %f[s] | Hash Match\n",
-                   now,  //连接时间
-                   inet_ntoa(clientAddress.sin_addr),
+            fclose (fp);
+
+
+            printf("%f | %s:%u | %s | %ld | %e | %f[s] | \n",
+                   time_2_dbl(GTOD_before),  //连接时间
+                   inet_ntoa(clientAddress.sin_addr), //客户端地址与端口
                    ntohs(clientAddress.sin_port),
-                   domain, //域名 localhost
-                   filename, //文件名
-                   cnt, //传输速率
-                   1.0f * cnt / (now - t), (now - t) / 1000000.0f  //持续时间
+                   pch, //文件名
+                   strlen(receive_file), //传输大小 %d
+                   (sizeof(receive_file) * 8) / time_2_dbl(difference),  //传输速率 %e
+                   time_2_dbl(difference) //持续时间
+                    //hash match %s
             );
 
-            fclose(fp);
-            */
         }
     }
     return 0;
