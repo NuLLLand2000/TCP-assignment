@@ -276,14 +276,11 @@ int main(int argc, char *argv[]) {
             printf("客户端已断开连接\n");
 
             char *pch = strtok(receive_header, " "); //split header with " "
-
+            char * predefined_md5 = strtok(NULL, " ");
             //写入文件
             char file_name[260] = "received_files/";
             strcat(file_name, pch);
             int res = system("mkdir received_files");
-            if (res == -1) {
-                perror("目录已经存在");
-            }
             FILE *fp;
             fp = fopen (file_name, "w+");
 
@@ -294,8 +291,12 @@ int main(int argc, char *argv[]) {
             
             //校验md5hash
             char * rece_md5 = calculate_file_md5("received_files/a.txt");
-            char md5_stat[100] = "";
-            if (!strcmp(predefined_md5, rece_md5)) {
+            char *md5_stat = "hhhhhhh";
+            
+
+            printf("%s\n", predefined_md5);
+
+            if (strcmp(predefined_md5, rece_md5)) {
                 md5_stat = "MD5 matched\n";
             } else {
                 md5_stat = "md5 not matched\n";
@@ -308,7 +309,7 @@ int main(int argc, char *argv[]) {
                    pch, //文件名
                    strlen(receive_file), //传输大小 %d
                    (sizeof(receive_file) * 8) / time_2_dbl(difference),  //传输速率 %e
-                   time_2_dbl(difference) //持续时间
+                   time_2_dbl(difference), //持续时间
                    md5_stat //md5是否匹配
             );
 
