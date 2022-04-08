@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
 
     char **tokens;
     FILE *fptr;
-    
+    struct timeval tv;
     
 
     if (argc != 3) {
@@ -148,6 +148,13 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+        // 设置超时重传
+tv.tv_sec = 3;  //socket 读写超时
+
+tv.tv_usec = 0;
+
+
+
 // =======================信息结构体
     int sock_addr_length = sizeof(struct sockaddr_in);
     struct sockaddr_in server_addr;
@@ -194,7 +201,8 @@ int main(int argc, char *argv[]) {
         printf("header发送成功, 准备接受数据\n");
 
 //=========================接受服务器的数据 read()
-
+        
+        setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)); //接受超时
         int rece_res = recv(
                 sockfd,
                 rece_msg,  //收到的内容
@@ -204,7 +212,6 @@ int main(int argc, char *argv[]) {
         if (rece_res == -1) { //接受失败，没有收到ok，等待重传
             perror("fail to recv\n");
             printf("正在重传，请稍后\n");
-            sleep(3);  //等待3s后重传
         } else {
             break;
         }
