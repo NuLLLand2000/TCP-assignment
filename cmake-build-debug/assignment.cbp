@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
+				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
+				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
+				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="main.c">
-				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/main.c" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
+			<Target title="sendmetcp.c">
+				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/sendmetcp.c" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 main.c"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 sendmetcp.c"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="main.c/fast">
-				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/main.c" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug"/>
+			<Target title="sendmetcp.c/fast">
+				<Option output="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/sendmetcp.c" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,29 +71,20 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 main.c/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 sendmetcp.c/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/client.c">
-			<Option target="main.c"/>
+		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/md5.c">
+			<Option target="sendmetcp.c"/>
 		</Unit>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/md5.c">
-			<Option target="main.c"/>
+		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/receivemetcp.c">
+			<Option target="sendmetcp.c"/>
 		</Unit>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/receivemetcp.c">
-			<Option target="main.c"/>
-		</Unit>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/sendmetcp.c">
-			<Option target="main.c"/>
-		</Unit>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/server.c">
-			<Option target="main.c"/>
-		</Unit>
-		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/CMakeLists.txt">
+		<Unit filename="/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -67,10 +67,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment
+CMAKE_SOURCE_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,44 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main.c
+# Target rules for targets named sendmetcp.c
 
 # Build rule for target.
-main.c: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main.c
-.PHONY : main.c
+sendmetcp.c: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sendmetcp.c
+.PHONY : sendmetcp.c
 
 # fast build rule for target.
-main.c/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/build
-.PHONY : main.c/fast
-
-client.o: client.c.o
-
-.PHONY : client.o
-
-# target to build an object file
-client.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/client.c.o
-.PHONY : client.c.o
-
-client.i: client.c.i
-
-.PHONY : client.i
-
-# target to preprocess a source file
-client.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/client.c.i
-.PHONY : client.c.i
-
-client.s: client.c.s
-
-.PHONY : client.s
-
-# target to generate assembly for a file
-client.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/client.c.s
-.PHONY : client.c.s
+sendmetcp.c/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/build
+.PHONY : sendmetcp.c/fast
 
 md5.o: md5.c.o
 
@@ -175,7 +148,7 @@ md5.o: md5.c.o
 
 # target to build an object file
 md5.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/md5.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/md5.c.o
 .PHONY : md5.c.o
 
 md5.i: md5.c.i
@@ -184,7 +157,7 @@ md5.i: md5.c.i
 
 # target to preprocess a source file
 md5.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/md5.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/md5.c.i
 .PHONY : md5.c.i
 
 md5.s: md5.c.s
@@ -193,7 +166,7 @@ md5.s: md5.c.s
 
 # target to generate assembly for a file
 md5.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/md5.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/md5.c.s
 .PHONY : md5.c.s
 
 receivemetcp.o: receivemetcp.c.o
@@ -202,7 +175,7 @@ receivemetcp.o: receivemetcp.c.o
 
 # target to build an object file
 receivemetcp.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/receivemetcp.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/receivemetcp.c.o
 .PHONY : receivemetcp.c.o
 
 receivemetcp.i: receivemetcp.c.i
@@ -211,7 +184,7 @@ receivemetcp.i: receivemetcp.c.i
 
 # target to preprocess a source file
 receivemetcp.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/receivemetcp.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/receivemetcp.c.i
 .PHONY : receivemetcp.c.i
 
 receivemetcp.s: receivemetcp.c.s
@@ -220,62 +193,8 @@ receivemetcp.s: receivemetcp.c.s
 
 # target to generate assembly for a file
 receivemetcp.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/receivemetcp.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/receivemetcp.c.s
 .PHONY : receivemetcp.c.s
-
-sendmetcp.o: sendmetcp.c.o
-
-.PHONY : sendmetcp.o
-
-# target to build an object file
-sendmetcp.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/sendmetcp.c.o
-.PHONY : sendmetcp.c.o
-
-sendmetcp.i: sendmetcp.c.i
-
-.PHONY : sendmetcp.i
-
-# target to preprocess a source file
-sendmetcp.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/sendmetcp.c.i
-.PHONY : sendmetcp.c.i
-
-sendmetcp.s: sendmetcp.c.s
-
-.PHONY : sendmetcp.s
-
-# target to generate assembly for a file
-sendmetcp.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/sendmetcp.c.s
-.PHONY : sendmetcp.c.s
-
-server.o: server.c.o
-
-.PHONY : server.o
-
-# target to build an object file
-server.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/server.c.o
-.PHONY : server.c.o
-
-server.i: server.c.i
-
-.PHONY : server.i
-
-# target to preprocess a source file
-server.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/server.c.i
-.PHONY : server.c.i
-
-server.s: server.c.s
-
-.PHONY : server.s
-
-# target to generate assembly for a file
-server.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/server.c.s
-.PHONY : server.c.s
 
 # Help Target
 help:
@@ -285,22 +204,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main.c"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
+	@echo "... sendmetcp.c"
 	@echo "... md5.o"
 	@echo "... md5.i"
 	@echo "... md5.s"
 	@echo "... receivemetcp.o"
 	@echo "... receivemetcp.i"
 	@echo "... receivemetcp.s"
-	@echo "... sendmetcp.o"
-	@echo "... sendmetcp.i"
-	@echo "... sendmetcp.s"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
 .PHONY : help
 
 

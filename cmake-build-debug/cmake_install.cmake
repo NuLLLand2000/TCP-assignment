@@ -1,4 +1,4 @@
-# Install script for directory: /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment
+# Install script for directory: /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

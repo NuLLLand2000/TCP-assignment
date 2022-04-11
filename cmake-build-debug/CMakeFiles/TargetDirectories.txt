@@ -1,3 +1,3 @@
-/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles/main.c.dir
+/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles/sendmetcp.c.dir

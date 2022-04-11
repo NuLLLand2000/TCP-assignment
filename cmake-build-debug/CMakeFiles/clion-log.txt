@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug
+-- Build files have been written to: /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug

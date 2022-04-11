@@ -63,16 +63,16 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment
+CMAKE_SOURCE_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/main.c.dir/all
+all: CMakeFiles/sendmetcp.c.dir/all
 
 .PHONY : all
 
@@ -82,36 +82,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/main.c.dir/clean
+clean: CMakeFiles/sendmetcp.c.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/main.c.dir
+# Target rules for target CMakeFiles/sendmetcp.c.dir
 
 # All Build rule for target.
-CMakeFiles/main.c.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target main.c"
-.PHONY : CMakeFiles/main.c.dir/all
+CMakeFiles/sendmetcp.c.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target sendmetcp.c"
+.PHONY : CMakeFiles/sendmetcp.c.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/main.c.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.c.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/assignment/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/main.c.dir/rule
+CMakeFiles/sendmetcp.c.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sendmetcp.c.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whoami/躺平从我做起/大三下/BTH011网络程序设计-龚卫华/TCP-assignment/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/sendmetcp.c.dir/rule
 
 # Convenience name for target.
-main.c: CMakeFiles/main.c.dir/rule
+sendmetcp.c: CMakeFiles/sendmetcp.c.dir/rule
 
-.PHONY : main.c
+.PHONY : sendmetcp.c
 
 # clean rule for target.
-CMakeFiles/main.c.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.c.dir/build.make CMakeFiles/main.c.dir/clean
-.PHONY : CMakeFiles/main.c.dir/clean
+CMakeFiles/sendmetcp.c.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sendmetcp.c.dir/build.make CMakeFiles/sendmetcp.c.dir/clean
+.PHONY : CMakeFiles/sendmetcp.c.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

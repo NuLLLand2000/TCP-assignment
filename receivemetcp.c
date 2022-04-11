@@ -253,7 +253,7 @@ int main(int argc, char *argv[]) {
                 printf("客户端退出\n");
             }
             printf("来自客户端的消息：%s\n", receive_header);
-            int retime = 6;
+            int retime = 6; //修改retime的值决定sleep的时长，6：5次重传后客户端关闭 2：重传2次后成功服务器收到数据
 
             //服务器发送信息
             for (int i = 0; i < retime; i++){
