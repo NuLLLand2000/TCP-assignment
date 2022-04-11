@@ -253,21 +253,39 @@ int main(int argc, char *argv[]) {
                 printf("客户端退出\n");
             }
             printf("来自客户端的消息：%s\n", receive_header);
+            int retime = 6;
 
             //服务器发送信息
+            for (int i = 0; i < retime; i++){
+                sleep(5);
+            }
+            
             int send_res = send(accept_fd, "ok\n", SEND_AND_RECEIVE_LENGTH, 0);
             if (send_res == -1) {
                 perror("服务器发送失败\n");
                 exit(1);
             }
-
-            //再次接受信息
+            
+            if (retime >= 6) {
+                printf("客户端文件内容发送失败，通信结束。\n");
+                exit(0);
+            } else {
+                //再次接受信息
             char receive_file[SEND_AND_RECEIVE_LENGTH] = "";
-            ssize_t rece_stat2 = recv(accept_fd, receive_file, SEND_AND_RECEIVE_LENGTH, 0);
-            if (rece_stat2 == -1) {
-                perror("文件内容接收失败\n");
+            for (int i = 0; i < retime + 1; i++) {
+                ssize_t rece_stat2 = recv(accept_fd, receive_file, SEND_AND_RECEIVE_LENGTH, 0);
+                if (rece_stat2 == -1) {
+                    perror("文件内容接收失败\n");
+                }
             }
-            printf("收到的文件内容为:\n%s\n", receive_file);
+            
+            char receive_file_con[SEND_AND_RECEIVE_LENGTH] = "";
+            ssize_t rece_stat3 = recv(accept_fd, receive_file_con, SEND_AND_RECEIVE_LENGTH, 0);
+            if (rece_stat3 == -1) {
+                perror("文件内容接受失败\n");
+            }
+            
+            printf("文件内容为%s\n", receive_file_con);
 
             gettimeofday(&GTOD_after, NULL);  //结束时间
 
@@ -284,13 +302,15 @@ int main(int argc, char *argv[]) {
             FILE *fp;
             fp = fopen (file_name, "w+");
 
-            for (int i = 0; i < strlen(receive_file); i++) {
-                fputc(receive_file[i], fp);
+            for (int i = 0; i < strlen(receive_file_con); i++) {
+                fputc(receive_file_con[i], fp);
             }
             fclose (fp);
+
             
             //校验md5hash
-            char * rece_md5 = calculate_file_md5("received_files/a.txt");
+            //char * rece_md5 = calculate_file_md5("received_files/a.txt");
+                        char * rece_md5 = calculate_file_md5(file_name);
             char *md5_stat = "hhhhhhh";
             
 
@@ -312,6 +332,9 @@ int main(int argc, char *argv[]) {
                    time_2_dbl(difference), //持续时间
                    md5_stat //md5是否匹配
             );
+            }
+
+            
 
         }
     }

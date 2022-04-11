@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 
 
 //============================计算md5
-    char *md5 = calculate_file_md5("a.txt");
+    char *md5 = calculate_file_md5(filename);
     
     char header[1024] = ""; //定义header
 
@@ -203,6 +203,8 @@ tv.tv_usec = 0;
 //=========================接受服务器的数据 read()
         
         setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)); //接受超时
+        
+        
         int rece_res = recv(
                 sockfd,
                 rece_msg,  //收到的内容
@@ -216,10 +218,10 @@ tv.tv_usec = 0;
             break;
         }
     }
-    if (try_times == 4) { //如果连接5次仍然失败，退出连接
+    if (try_times >= 4) { //如果连接5次仍然失败，退出连接
         close(sockfd); //关闭连接
-        printf("连接失败，程序终止。\n");
-        exit(1);
+        printf("连接失败，程序终止。客户端连接已关闭\n");
+        exit(0);
     }
     printf("来自服务器的消息：%s\n", rece_msg);
 
